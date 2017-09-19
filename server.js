@@ -24,7 +24,9 @@ app.use(express.static('client'));
 ////////////////////////////////////////////////////////////////////////////////
 
 const userSchema = new Schema({
-  username: String
+  name: String,
+  email: String,
+  password: String
 });
 
 const User = mongoose.model('User', userSchema);
@@ -54,7 +56,28 @@ app.post('/items', (req, res) => {
   newItem.save().then( (newItem) => {
     res.json(newItem);
   });
+});
+
+app.post('/register', (req, res) => {
+  var {name, email, password} = req.body;
+  var newUser = new User({ name, email, password });
+  newUser.save().then( (newUser) => {
+    res.json(newUser);
+  });
+});
+
+app.post('/login', (req, res) => {
+  var {email, password} = req.body;
+  User.find({email: email}).then( (user) => {
+    if(password === req.body.password) {
+      res.json(user);
+    } else {
+      console.log('Invalid password.');
+    }
+  })
+
 })
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Fire up the server...

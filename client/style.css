@@ -45,3 +45,12 @@ img {
   margin-top: 15px;
   float:right;
 }
+
+#register {
+  float: right;
+}
+
+.btn-signout {
+  margin-top: -10px;
+  margin-left: 10px;
+}
