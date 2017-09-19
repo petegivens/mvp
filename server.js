@@ -42,7 +42,6 @@ const Item = mongoose.model('Item', itemSchema);
 ////////////////////////////////////////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////////////////////////////////////////
-// Test Route:
 app.get('/items', (req, res) => {
   Item.find({}, (err, data) => {
     res.json(data);
@@ -50,14 +49,17 @@ app.get('/items', (req, res) => {
 });
 
 app.post('/items', (req, res) => {
+  var {description, quantity, seller, type, comments} = req.body;
   var newItem = new Item({
-    description: req.body.description,
-    quantity: req.body.quantity,
-    seller: req.body.seller,
-    type: req.body.type,
-    comments: req.body.comments
+    description,
+    quantity,
+    seller,
+    type,
+    comments
   });
   newItem.save().then( (newItem) => {
+    console.log('request body: ', req.body);
+    console.log('item added to db: ', newItem);
     res.json(newItem);
   });
 })

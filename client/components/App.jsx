@@ -31,25 +31,29 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+
     var item = {
       description: event.target.description.value,
       quantity: event.target.quantity.value,
-      type: event.target.drugType.checked.value,
-      comments: event.target.comments.value,
-      seller: Window.username
+      seller: Window.username,
+      type: event.target.type.value,
+      comments: event.target.comments.value
     }
 
     event.target.description.value = '';
     event.target.quantity.value = '';
     event.target.comments.value = '';
 
-    console.log(item);
-    //TODO: submit item function
-    $.post('/items', (item) => {
-      this.getAllItems();
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/items",
+      data: JSON.stringify(item),
+      contentType: "application/json",
+      success: () => {
+        this.getAllItems();
+      }
     });
   }
-
 
   render() {
     return (

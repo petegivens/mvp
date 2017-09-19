@@ -8,14 +8,26 @@ h1 {
   margin-bottom: 25px;
 }
 
-img {
-  max-width: 150px;
-}
-
-input [type="radio"]{
-  margin: 100px;
+input {
+  margin-bottom: 5px;
 }
 
 label {
   margin-left: 10 px;
+}
+
+div.pill {
+  content:url('./img/pills.jpg');
+  max-width: 160px;
+  float: right;
+}
+div.liquid {
+  content:url('./img/liquid.jpg');
+  max-width: 160px;
+  float: right;
+}
+div.powder {
+  content:url('./img/powder.jpg');
+  max-width: 160px;
+  float: right;
 }
