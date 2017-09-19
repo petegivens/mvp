@@ -32,7 +32,8 @@ const User = mongoose.model('User', userSchema);
 const itemSchema = new Schema({
   description: String,
   quantity: Number,
-  dose: String,
+  seller: String,
+  type: String,
   comments: String
 });
 
@@ -52,6 +53,8 @@ app.post('/items', (req, res) => {
   var newItem = new Item({
     description: req.body.description,
     quantity: req.body.quantity,
+    seller: req.body.seller,
+    type: req.body.type,
     comments: req.body.comments
   });
   newItem.save().then( (newItem) => {

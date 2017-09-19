@@ -6,12 +6,30 @@ const AddItem = ({handleSubmit}) => {
     <div>
       <h4>Post an Item</h4>
       <form onSubmit={handleSubmit}>
-        <label>Item Description: </label>
+        <label>Item Description: </label><br/>
         <input type="text" name="description" />
-        <label> Quantity Available: </label>
-        <input type="text" name="quantity" />
-        <label>Comments: </label>
-        <input type="textarea" name="comments" />
+
+        <div className="radioGroup">
+          <label>
+            <input id="radio1" type="radio" name="drugType" value="pill" />
+            Pills
+          </label>
+
+          <label>
+            <input id="radio2" type="radio" name="drugType" value="powder" />
+            Powder
+          </label>
+
+          <label>
+            <input id="radio3" type="radio" name="drugType" value="liquid" />
+            Liquid
+          </label>
+        </div>
+
+        <label> Quantity Available: </label><br/>
+        <input type="text" name="quantity" /><br/>
+        <label>Comments: </label><br/>
+        <input type="text" name="comments" /><br/>
         <input type="submit" value="Post Item" />
       </form>
     </div>

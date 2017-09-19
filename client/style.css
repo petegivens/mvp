@@ -12,6 +12,10 @@ img {
   max-width: 150px;
 }
 
-.itemDescription {
-  font-size: 4em;
+input [type="radio"]{
+  margin: 100px;
+}
+
+label {
+  margin-left: 10 px;
 }
