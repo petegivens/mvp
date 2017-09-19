@@ -50,16 +50,8 @@ app.get('/items', (req, res) => {
 
 app.post('/items', (req, res) => {
   var {description, quantity, seller, type, comments} = req.body;
-  var newItem = new Item({
-    description,
-    quantity,
-    seller,
-    type,
-    comments
-  });
+  var newItem = new Item({ description, quantity, seller, type, comments });
   newItem.save().then( (newItem) => {
-    console.log('request body: ', req.body);
-    console.log('item added to db: ', newItem);
     res.json(newItem);
   });
 })

@@ -1,20 +1,17 @@
 import React from 'react';
 import ItemList from './ItemList.jsx';
 import AddItem from './AddItem.jsx';
-
-var sampleItem = {
-  description: 'Tylenol',
-  quantity: 10,
-  drugType: 'pill',
-  imageUrl: 'https://www.tylenol.com/sites/tylenol_us/files/styles/product_image/public/tylur_coldsorethroat_bty_liquid_ft.jpg',
-  seller: 'Pete'
-}
+import Navbar from './Navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [sampleItem]
+      items: [],
+      user: {
+        name: 'Guest',
+        isLoggedIn: true
+      }
     }
   }
 
@@ -57,16 +54,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-            <h3>Items Available</h3>
-        </div>
-        <div className="row">
-          <div className="col-xs-8">
-            <ItemList items={this.state.items} name={this.props.name}/>
+      <div>
+        <Navbar user={this.state.user}/>
+        <h1>Silk Road V.29</h1>
+        <div className="container-fluid">
+          <div className="row">
+              <h3>Items Available</h3>
           </div>
-          <div className="col-xs-4">
-            <AddItem handleSubmit={this.handleSubmit.bind(this)}/>
+          <div className="row">
+            <div className="col-xs-8">
+              <ItemList items={this.state.items} name={this.props.name}/>
+            </div>
+            <div className="col-xs-4">
+              <AddItem handleSubmit={this.handleSubmit.bind(this)}/>
+            </div>
           </div>
         </div>
       </div>

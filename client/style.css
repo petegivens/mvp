@@ -35,3 +35,13 @@ div.powder {
 h3 {
   margin-left: 25px;
 }
+
+img {
+  max-height: 30px;
+  margin-top: -5px;
+}
+
+#welcome {
+  margin-top: 15px;
+  float:right;
+}
