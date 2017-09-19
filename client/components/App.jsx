@@ -57,12 +57,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-xs-8">
-          <ItemList items={this.state.items} name={this.props.name}/>
+      <div className="container-fluid">
+        <div className="row">
+            <h3>Items Available</h3>
         </div>
-        <div className="col-xs-4">
-          <AddItem handleSubmit={this.handleSubmit.bind(this)}/>
+        <div className="row">
+          <div className="col-xs-8">
+            <ItemList items={this.state.items} name={this.props.name}/>
+          </div>
+          <div className="col-xs-4">
+            <AddItem handleSubmit={this.handleSubmit.bind(this)}/>
+          </div>
         </div>
       </div>
     )

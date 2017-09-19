@@ -3,7 +3,7 @@ import React from 'react';
 
 const AddItem = ({handleSubmit}) => {
   return (
-    <div>
+    <div className="well">
       <h4>Post an Item</h4>
       <form onSubmit={handleSubmit}>
         <select name="type">
