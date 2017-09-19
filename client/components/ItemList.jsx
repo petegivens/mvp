@@ -6,7 +6,7 @@ const ItemList = ({items}) => (
 
     {items.map((item, index) =>
       <Item item={item} key={index} />
-    )}
+    ).reverse()}
   </div>
 );
 

@@ -56,7 +56,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar user={this.state.user}/>
-        <h1>Silk Road V.29</h1>
+        <h1>Silk Road v29</h1>
         <div className="container-fluid">
           <div className="row">
               <h3>Items Available</h3>
