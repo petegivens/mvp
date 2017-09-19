@@ -2,17 +2,11 @@ import React from 'react';
 import ItemList from './ItemList.jsx';
 import AddItem from './AddItem.jsx';
 
-// Functional Component Syntax:
-// const App = (props) => {
-//   return (
-//     <h1>hratx29-list!</h1>
-//   )
-// }
-
 var sampleItem = {
   description: 'Tylenol',
   quantity: 10,
-  imageUrl: 'https://www.tylenol.com/sites/tylenol_us/files/styles/product_image/public/tylur_coldsorethroat_bty_liquid_ft.jpg'
+  imageUrl: 'https://www.tylenol.com/sites/tylenol_us/files/styles/product_image/public/tylur_coldsorethroat_bty_liquid_ft.jpg',
+  seller: 'Pete'
 }
 
 class App extends React.Component {
@@ -23,26 +17,42 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getAllItems();
+  }
+
+  getAllItems() {
+    $.get('/items').then( (data) => {
+      this.setState({items: data});
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
     var item = {
       description: event.target.description.value,
       quantity: event.target.quantity.value,
-      imageUrl: event.target.imageUrl.value
+      comments: event.target.comments.value,
+      seller: Window.username
     }
 
+    event.target.description.value = '';
+    event.target.quantity.value = '';
+    event.target.comments.value = '';
+
     //TODO: submit item function
-    console.log(JSON.stringify(item));
+    $.post('/items', (item) => {
+      this.getAllItems();
+    });
   }
+
+
   render() {
-    // this.state.something
-    // this.props.something
-    // this.setState()
     return (
       <div className="row">
         <div className="col-xs-9">
-          <ItemList items={this.state.items}/>
+          <ItemList items={this.state.items} name={this.props.name}/>
         </div>
         <div className="col-xs-3">
           <AddItem handleSubmit={this.handleSubmit.bind(this)}/>

@@ -3,12 +3,12 @@ const browserify = require('browserify-middleware');
 const path = require('path');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bodyParser = require('body-parser');
 const db = mongoose.connect('mongodb://localhost:27017/app', {
   useMongoClient: true
 });
-
-
 const app = express();
+app.use(bodyParser.json());
 
 // Call to Browserify bundler, which transpiles all .jsx and serves all js files
 // to index.html in a single bundle.js file
@@ -42,18 +42,16 @@ const Item = mongoose.model('Item', itemSchema);
 // Routes
 ////////////////////////////////////////////////////////////////////////////////
 // Test Route:
-app.get('/hello', (req, res) => {
-  var user1 = new User({username: 'pete'});
-  user1.save().then((newUser) => {
-    res.json(newUser);
+app.get('/items', (req, res) => {
+  Item.find({}, (err, data) => {
+    res.json(data);
   });
-})
+});
 
-app.post('/add', (req, res) => {
+app.post('/items', (req, res) => {
   var newItem = new Item({
     description: req.body.description,
     quantity: req.body.quantity,
-    dose: req.body.dose,
     comments: req.body.comments
   });
   newItem.save().then( (newItem) => {

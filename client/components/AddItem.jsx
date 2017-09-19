@@ -10,8 +10,8 @@ const AddItem = ({handleSubmit}) => {
         <input type="text" name="description" />
         <label> Quantity Available: </label>
         <input type="text" name="quantity" />
-        <label>Image URL (optional): </label>
-        <input type="text" name="imageUrl" />
+        <label>Comments: </label>
+        <input type="textarea" name="comments" />
         <input type="submit" value="Post Item" />
       </form>
     </div>
